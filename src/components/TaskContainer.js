@@ -6,7 +6,7 @@ import {
   stopTime, 
   continueTime,
   removeTask
-} from './actions/actions';
+} from '../actions/actions';
 
 function TaskContainer(props){  
   let {state, stopTime, continueTime, removeTask} = props;

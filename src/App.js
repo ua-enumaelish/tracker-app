@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import AddTask from './AddTask';
-import TaskContainer from './TaskContainer';
+import AddTask from './components/AddTask';
+import TaskContainer from './components/TaskContainer';
 
 function App() {
   return <>

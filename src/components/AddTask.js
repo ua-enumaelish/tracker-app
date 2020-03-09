@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
-import {addTask} from './actions/actions';
+import {addTask} from '../actions/actions';
 
 function AddTask(props){
   const {addTask} = props;
