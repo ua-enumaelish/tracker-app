@@ -1,0 +1,99 @@
+/****HEADER****/
+.header{
+  max-width: 460px;
+  padding: 5px;
+  margin: 0 auto;
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+  background-color: grey;
+  box-sizing: border-box;
+}
+
+
+/****ADD-TASK****/
+.add-task{
+  max-width: 460px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.add-task__wrapper{  
+  display: flex;
+  margin-top: 5px;
+}
+
+.add-task__input{
+  flex-grow: 3;
+  padding: 5px;
+  margin-right: 3px;
+  color: grey;
+  border: grey 1px solid;
+  border-radius: 5px;
+}
+
+.add-task__btn{
+  flex-shrink: 1;
+  color: grey;
+  background-color: lightgreen;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/******TASK*****/
+.task{
+  max-width: 460px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.task__container{
+  display: flex;
+  justify-content: flex-end;  
+  align-items: center;
+  padding: 5px;
+  color: white;
+  margin-bottom: 3px;
+  border-radius: 5px;
+}
+
+.task__name{
+  margin: 5px;
+  margin-right: auto;
+}
+
+.task__timer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.task__buttons{
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.task__btn{
+  width: 30px;
+  height: 30px;
+  border-color: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.task__stop{
+  background-color:tomato;
+}
+
+.task__continue{
+  background-color: lightgreen;
+}
+
+.task__remove{
+  margin-left: 5px;
+  color: white;
+  background-color: red;
+}
