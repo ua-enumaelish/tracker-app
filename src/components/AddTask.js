@@ -1,11 +1,13 @@
-import React, {useState} from "react";
-import {connect} from 'react-redux';
+import React, {
+  useState
+} from "react";
+import {useDispatch} from 'react-redux';
 import {addTask} from '../actions/actions';
 
-function AddTask(props){
-  const {addTask} = props;
+export default function AddTask(){
+  const dispatch = useDispatch()
   const [value, setValue] = useState('');
-  let inputRef = React.createRef(); 
+  const inputRef = React.createRef(); 
   
   let createTaskByEnter = (e) => {
     if(e.key === 'Enter'){
@@ -13,12 +15,13 @@ function AddTask(props){
     }
   }
 
-  let addNewTask = (value) => {   
-    !value ?
-      addTask('new task'):    
-      addTask(value)
-      
-    inputRef.current.value = null
+  let addNewTask = value => {   
+    if(!value){
+      dispatch(addTask('new task', Date.now())); 
+    }else{
+      dispatch(addTask(value, Date.now()));
+    }
+    inputRef.current.value = '';
   }
 
   return(<>
@@ -31,12 +34,12 @@ function AddTask(props){
           value={value}
           ref={inputRef}
           onChange = {e => setValue(e.target.value)}
-          onKeyPress={(e) => createTaskByEnter(e)}
+          onKeyPress={e => createTaskByEnter(e)}
         />
         
         <button
           className="add-task__btn"
-          onClick={() => addTask(value)}
+          onClick={() => addNewTask(value)}
         >
           Add
         </button>
@@ -45,11 +48,3 @@ function AddTask(props){
     </div>
   </>)
 }
-
-const mapDispatchToProps = dispatch => {   
-  return {
-    addTask: name => dispatch(addTask(name, Date.now()))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(AddTask);

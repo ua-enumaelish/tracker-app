@@ -1,12 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, {
+  useState, 
+  useEffect,
+  useMemo
+} from "react";
 
 export default function Task(props){   
-  const {name, date, stop} = props.data;
-
+  
+  const {name, date, stop, index} = props.data;
+  const {onStop, onContinue, onRemove} = props
+  console.log(props.onStop);
   const [timer, setTimer] = useState(date);  
   const [color, setColor] = useState('lightgreen');  
   
-
+  
   useEffect( () => {
     let timerId;
     if(!stop){
@@ -25,17 +31,17 @@ export default function Task(props){
     switch(value){
       default: 
         return 0
-      case 'hours':
+      case 'hr':
         let hour = Math.floor((timer / 3600000))
         return hour.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
         })
-      case 'minutes':
+      case 'min':
         let minute = Math.floor((timer / 60000) % 60);
         return minute.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
         })
-      case 'seconds':
+      case 'sec':
         let second = Math.floor((timer / 1000) % 60);
         return second.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
@@ -50,28 +56,28 @@ export default function Task(props){
     >
       <p className="task__name">{name}</p>
       <div className="task__timer"> 
-        <span>{getNumber('hours') + ': '}</span>    
-        <span>{getNumber('minutes') + ': '}</span>      
-        <span>{getNumber('seconds')}</span>
+        <span>{getNumber('hr') + ': '}</span>    
+        <span>{getNumber('min') + ': '}</span>      
+        <span>{getNumber('sec')}</span>
       </div>
       <div className="task__buttons">
 
         {!stop ?
           <button
             className="task__btn task__stop"
-            onClick={props.onStop}
+            onClick={onStop}
           >            
           </button> :
           <button
             className="task__btn task__continue"
-            onClick={props.onContinue}
+            onClick={onContinue}
           >          
           </button>
         }
 
         <button
           className="task__btn task__remove"
-          onClick={props.onRemove}
+          onClick={onRemove}
         >
           R
         </button>

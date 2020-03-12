@@ -5,15 +5,13 @@ import {
   REMOVE_TASK
 } from './actionType';
 
-import {v4} from 'uuid';
 
 export const addTask = (name, date) => ({
   type: ADD_TASK,
-    payload: {
-      id: v4(),
+    payload: {      
       stop: false,
-      name: name,
-      date: date      
+      name,
+      date    
     }
   })
 
@@ -22,9 +20,9 @@ export const stopTime = (state, date, index) => ({
     payload: {
       ...state,
       stop: !state.stop,
-      date: date
+      date
     },
-    index: index
+    index
   })
 
 export const continueTime = (state, date, index) => ({
@@ -32,14 +30,14 @@ export const continueTime = (state, date, index) => ({
     payload: {
       ...state,
       stop: !state.stop,
-      date: date
+      date
     },
-    index: index
+    index
   })
 
 export const removeTask = index => ({
     type: REMOVE_TASK,    
-    index: index
+    index
   })
 
   
