@@ -1,7 +1,7 @@
 export function rootReducer(state, action) {
   let clone;
   switch(action.type){    
-    case 'ADD_TASK':       
+    case 'ADD_TASK': 
       return [...state, {...action.payload}];
     case 'STOP_TIME': 
       clone = state.slice(0);

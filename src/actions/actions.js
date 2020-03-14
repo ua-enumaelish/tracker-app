@@ -19,9 +19,8 @@ export const stopTime = (state, date, index) => ({
   type: STOP_TIME,
     payload: {
       ...state,
-      stop: !state.stop,
-      date,
-      
+      stop: true,
+      date      
     },
     index
   })
@@ -30,7 +29,7 @@ export const continueTime = (state, date, index) => ({
   type: CONTINUE_TIME,
     payload: {
       ...state,
-      stop: !state.stop,
+      stop: false,
       date
     },
     index

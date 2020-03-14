@@ -1,55 +1,27 @@
-import React, {
-  useState, 
-  useEffect,
-  useRef
-} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  stopTime, 
-  continueTime,
-  removeTask
-} from '../actions/actions';
+import React from "react";
+import {useTimer} from './MyHooks';
 
 export default function Task(props){   
   
   const {name, date, stop} = props.data;
   const {onStop, onContinue, onRemove} = props;
-  console.log(props)
+  const {timer, color} = useTimer(date, stop);
 
-  const [timer, setTimer] = useState(date);  
-  const [color, setColor] = useState('lightgreen');  
- 
-  
-  useEffect( () => {
-    let timerId;
-    if(!stop){
-      timerId = setInterval(()=>{
-        setTimer(Date.now() - date)
-      },1000);      
-      setColor('lightgreen');      
-      return () => clearInterval(timerId);
-    }    
-    
-    setColor('grey')
-    clearInterval(timerId);
-  }, [stop, timer, date]);
-
-
-  let getNumber = value => {
+  let getNumber = value => {    
     switch(value){
       default: 
         return 0
-      case 'hr':
+      case 'hours':       
         let hour = Math.floor((timer / 3600000))
         return hour.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
         })
-      case 'min':
+      case 'minutes':
         let minute = Math.floor((timer / 60000) % 60);
         return minute.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
         })
-      case 'sec':
+      case 'seconds':
         let second = Math.floor((timer / 1000) % 60);
         return second.toLocaleString(undefined, {
           minimumIntegerDigits: 2      
@@ -65,30 +37,28 @@ export default function Task(props){
      
       <p className="task__name">{name}</p>
       <div className="task__timer"> 
-        <span>{getNumber('hr') + ': '}</span>    
-        <span>{getNumber('min') + ': '}</span>      
-        <span>{getNumber('sec')}</span>
+        <span>{getNumber('hours') + ': '}</span>    
+        <span>{getNumber('minutes') + ': '}</span>      
+        <span>{getNumber('seconds')}</span>
       </div>
       <div className="task__buttons">
 
         {!stop ?
           <button
             className="task__btn task__stop"
-            onClick={() => onStop(props.index)}
+            onClick={onStop.bind(null, props.index)}
           > 
-           
           </button> :
           <button
             className="task__btn task__continue"
-            onClick={onContinue}
-          >          
-          
+            onClick={onContinue.bind(null, props.index)}
+          > 
           </button>
         }
 
         <button
           className="task__btn task__remove"
-          onClick={onRemove}
+          onClick={onRemove.bind(null, props.index)}
         >
           R
         </button>
@@ -96,3 +66,4 @@ export default function Task(props){
     </div>
   </>)
 }
+

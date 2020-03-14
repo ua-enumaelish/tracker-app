@@ -44,7 +44,6 @@ export default function AddTask(){
           Add
         </button>
       </div>
-      
     </div>
   </>)
 }
