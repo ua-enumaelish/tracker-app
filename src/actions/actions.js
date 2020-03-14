@@ -20,7 +20,8 @@ export const stopTime = (state, date, index) => ({
     payload: {
       ...state,
       stop: !state.stop,
-      date
+      date,
+      
     },
     index
   })

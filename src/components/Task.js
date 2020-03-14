@@ -1,31 +1,39 @@
 import React, {
   useState, 
   useEffect,
-  useMemo
+  useRef
 } from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  stopTime, 
+  continueTime,
+  removeTask
+} from '../actions/actions';
 
 export default function Task(props){   
   
-  const {name, date, stop, index} = props.data;
-  const {onStop, onContinue, onRemove} = props
-  console.log(props.onStop);
+  const {name, date, stop} = props.data;
+  const {onStop, onContinue, onRemove} = props;
+  console.log(props)
+
   const [timer, setTimer] = useState(date);  
   const [color, setColor] = useState('lightgreen');  
-  
+ 
   
   useEffect( () => {
     let timerId;
     if(!stop){
       timerId = setInterval(()=>{
         setTimer(Date.now() - date)
-      },1000/24);      
+      },1000);      
       setColor('lightgreen');      
       return () => clearInterval(timerId);
     }    
     
     setColor('grey')
     clearInterval(timerId);
-  }, [stop, timer, date])  
+  }, [stop, timer, date]);
+
 
   let getNumber = value => {
     switch(value){
@@ -54,6 +62,7 @@ export default function Task(props){
       className="task__container"
       style={{backgroundColor: color}}
     >
+     
       <p className="task__name">{name}</p>
       <div className="task__timer"> 
         <span>{getNumber('hr') + ': '}</span>    
@@ -65,13 +74,15 @@ export default function Task(props){
         {!stop ?
           <button
             className="task__btn task__stop"
-            onClick={onStop}
-          >            
+            onClick={() => onStop(props.index)}
+          > 
+           
           </button> :
           <button
             className="task__btn task__continue"
             onClick={onContinue}
           >          
+          
           </button>
         }
 
