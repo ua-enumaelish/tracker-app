@@ -15,8 +15,8 @@ import {
 
 import Task from './Task';
 
-export default function TaskContainer(){    
-  const state = useSelector(state => state);
+export default function TaskContainer(){
+  const state = useSelector(state => state.taskList);  
   const dispatch = useDispatch(); 
   
   const handleStop = useCallback( index => {    

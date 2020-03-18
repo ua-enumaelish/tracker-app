@@ -1,9 +1,7 @@
-import {
-  ADD_TASK,
-  STOP_TIME,
-  CONTINUE_TIME,
-  REMOVE_TASK
-} from './actionType';
+export const ADD_TASK = 'ADD_TASK';
+export const STOP_TIME = 'STOP_TIME';
+export const CONTINUE_TIME = 'CONTINUE_TIME';
+export const REMOVE_TASK = 'REMOVE_TASK';
 
 
 export const addTask = (name, date) => ({

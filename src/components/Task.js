@@ -5,7 +5,7 @@ export default function Task(props){
   
   const {name, date, stop} = props.data;
   const {onStop, onContinue, onRemove} = props;
-  const {timer, color} = useTimer(date, stop);
+  const {timer} = useTimer(date, stop);
 
   let getNumber = value => {    
     switch(value){
@@ -32,7 +32,7 @@ export default function Task(props){
   return(<>
     <div 
       className="task__container"
-      style={{backgroundColor: color}}
+      style={{backgroundColor: !stop ? 'lightgreen' : 'grey'}}
     >
      
       <p className="task__name">{name}</p>

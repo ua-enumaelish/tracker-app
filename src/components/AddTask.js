@@ -7,8 +7,7 @@ import {addTask} from '../actions/actions';
 export default function AddTask(){
   const dispatch = useDispatch()
   const [value, setValue] = useState('');
-  const inputRef = React.createRef(); 
-  
+    
   let createTaskByEnter = (e) => {
     if(e.key === 'Enter'){
       addNewTask(e.target.value)
@@ -21,7 +20,7 @@ export default function AddTask(){
     }else{
       dispatch(addTask(value, Date.now()));
     }
-    inputRef.current.value = '';
+    setValue('');
   }
 
   return(<>
@@ -32,7 +31,6 @@ export default function AddTask(){
           className="add-task__input"
           placeholder="Add task"
           value={value}
-          ref={inputRef}
           onChange = {e => setValue(e.target.value)}
           onKeyPress={e => createTaskByEnter(e)}
         />
