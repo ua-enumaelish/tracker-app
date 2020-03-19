@@ -1,4 +1,4 @@
-import React, {
+import {
   useState, 
   useEffect
 } from "react";
@@ -14,10 +14,10 @@ export function useTimer(date, stop){
       },1000/24);      
          
       return () => clearInterval(timerId);
-    } 
-   
-    return () => clearInterval(timerId);
-  }, [date, timer, stop]);
+    } else{
+      return () => clearInterval(timerId);
+    }   
+  }, [date, stop]);
 
   return {timer};
 }
